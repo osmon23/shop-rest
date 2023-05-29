@@ -24,3 +24,6 @@ class CustomUserManagerAdmin(admin.ModelAdmin):
     ordering = (
         'email',
     )
+    exclude = (
+        'password',
+    )
