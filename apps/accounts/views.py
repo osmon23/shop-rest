@@ -44,7 +44,7 @@ class UserLoginView(APIView):
             user = authenticate(email=email, password=password)
 
             if user is not None:
-                token, created = Token.objects.get_or_create(user=user)
+                token = Token.objects.filter(user=user).first()
                 return Response({'token': token.key})
             else:
                 return Response({'error': 'Неверное имя пользователя или пароль'}, status=400)
