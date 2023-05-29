@@ -6,3 +6,7 @@ psycopg2-binary==2.9.6
 requests
 beautifulsoup4==4.12.2
 python-decouple==3.8
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.2.2
+drf_spectacular==0.26.2
+drf-spectacular-sidecar==2023.5.1
