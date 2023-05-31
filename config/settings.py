@@ -33,8 +33,8 @@ ALLOWED_HOSTS = env_config('ALLOWED_HOSTS', '').split(',')
 MY_APPS = [
     'apps.accounts',
     'apps.shop',
+    'apps.cart',
     # 'apps.orders',
-    # 'apps.cart',
 ]
 
 THIRDS_PARTY_APPS = [
@@ -43,6 +43,8 @@ THIRDS_PARTY_APPS = [
     'drf_spectacular',
     'drf_spectacular_sidecar',
     'rest_framework_simplejwt',
+    'django_filters',
+    'corsheaders',
 ]
 
 INSTALLED_APPS = [
@@ -57,6 +59,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -170,6 +173,9 @@ SPECTACULAR_SETTINGS = {
     'REDOC_DIST': 'SIDECAR',
     # OTHER SETTINGS
 }
+
+#CORS
+CORS_ORIGIN_ALLOW_ALL = True
 
 with contextlib.suppress(ImportError):
     from .local_settings import *

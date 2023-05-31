@@ -1,27 +1,31 @@
+from itertools import product
+
 from rest_framework import serializers
 from .models import Category, Product, ProductImage, Specification
 
 
-class CategorySerializer(serializers.HyperlinkedModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
+    parent = serializers.CharField(default=None)
+
     class Meta:
         model = Category
         fields = (
-            'id',
-            'url',
             'name',
             'parent',
             'description',
         )
+        read_only_fields = (
+            'id',
+        )
 
 
-class ProductImageSerializer(serializers.HyperlinkedModelSerializer):
+class ProductImageSerializer(serializers.ModelSerializer):
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
 
     class Meta:
         model = ProductImage
         fields = (
             'id',
-            'url',
             'product',
             'image',
         )
@@ -34,7 +38,6 @@ class SpecificationSerializer(serializers.HyperlinkedModelSerializer):
         model = Specification
         fields = (
             'id',
-            'url',
             'name',
             'value',
             'product',
@@ -42,20 +45,9 @@ class SpecificationSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
-    category = CategorySerializer()
-    images = ProductImageSerializer(many=True)
-    specifications = SpecificationSerializer(many=True)
+    category = CategorySerializer(read_only=True)
+    image = ProductImageSerializer
 
     class Meta:
         model = Product
-        fields = (
-            'id',
-            'url',
-            'name',
-            'category',
-            'description',
-            'price',
-            'quantity',
-            'images',
-            'specifications',
-        )
+        fields = '__all__'
