@@ -43,6 +43,7 @@ api_v1_urlpatterns = [
     path('token/', include(auth_urlpatterns)),
     path('accounts-', include('apps.accounts.urls')),
     path('shop-', include('apps.shop.urls')),
+    path('cart-', include('apps.cart.urls')),
 ]
 
 urlpatterns = [
