@@ -10,6 +10,10 @@ class CartViewSet(viewsets.ModelViewSet):
     serializer_class = CartSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def save(self):
+        user = self.request.user
+        return super().save(user=user)
+
 
 class CartItemViewSet(viewsets.ModelViewSet):
     queryset = CartItem.objects.all().order_by('id')

@@ -3,7 +3,7 @@ pillow==9.5.0
 django-debug-toolbar==4.0.0
 django-mptt==0.14.0
 psycopg2-binary==2.9.6
-requests
+requests==2.31.0
 beautifulsoup4==4.12.2
 python-decouple==3.8
 djangorestframework==3.14.0
@@ -12,3 +12,5 @@ drf_spectacular==0.26.2
 drf-spectacular-sidecar==2023.5.1
 django-filter==23.2
 django-cors-headers==4.0.0
+docker-compose==1.29.2
+redis==4.5.5
